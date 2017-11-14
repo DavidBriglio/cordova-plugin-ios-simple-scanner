@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns=""
+        id="cordova-plugin-ios-simple-scanner" version="0.0.1">
+    <name>iOS Simple Barcode Scanner</name>
+    <author>David Briglio</author>
+    <description>Simple barcode scanner for iOS (PDF417 Supported).</description>
+    <license>MIT</license>
+    <keywords>cordova,simple,scanner,ios,pdf417</keywords>
+    <js-module src="www/scanner.js" name="scanner">
+        <clobbers target="cordova.plugins.ios.simpleScanner" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="BarcodeScanner">
+                <param name="ios-package" value="BarcodeScanner"/>
+            </feature>
+        </config-file>
+        <source-file src="src/BarcodeScanner.swift" />
+        <source-file src="src/BarcodeScannerController.swift" />
+        <resource-file src="img/ios7-bolt-white.png" target="ios7-bolt-white.png"/>
+        <resource-file src="img/ios7-bolt-outline-white.png" target="ios7-bolt-outline-white.png"/>
+        <resource-file src="img/ios7-close-empty-white.png" target="ios7-close-empty-white.png"/>
+    </platform>
+</plugin>
