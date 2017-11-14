@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-ios-simple-scanner",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Cordova simple barcode scanner for iOS (PDF417 Supported).",
   "cordova": {
     "id": "cordova-plugin-ios-simple-scanner",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DavidBriglio/cordova-plugin-ios-simple-scanner"
+    "url": "git+https://github.com/DavidBriglio/cordova-plugin-ios-simple-scanner.git"
   },
   "keywords": [
     "cordova",
