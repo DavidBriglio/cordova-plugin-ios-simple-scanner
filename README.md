@@ -1,6 +1,10 @@
 [![npm version](https://badge.fury.io/js/cordova-plugin-ios-simple-scanner.svg)](https://badge.fury.io/js/cordova-plugin-ios-simple-scanner)
 # cordova-plugin-ios-simple-scanner
-Simple iOS Barcode Scanner for Cordova. **PDF417 Supported!**
+Simple iOS Barcode Scanner for Cordova. 
+ - **PDF417 Supported!**
+ - Flash toggle button
+ - Cancel scan button
+ - Optional onscreen guide box (with 'Scanning...' text)
 
 # How To Use
 Install the plugin using:
