@@ -16,7 +16,7 @@ cordova plugin add cordova-plugin-ios-simple-scanner
 cordova plugin add https://github.com/DavidBriglio/cordova-plugin-ios-simple-scanner
 ```
 
-Call the scan method with the following parameters:
+Call the `scanBarcode` method with the following parameters:
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -28,7 +28,7 @@ Call the scan method with the following parameters:
 Example:
 ```javascript
 var successCallback = function(value) {
-    console.log("Format Found: " + value.format, "Data: " + value.data);
+    console.log("Format Found: " + value.format + ", Data: " + value.data);
 };
 
 var errorCallback = function(message) {
@@ -36,7 +36,7 @@ var errorCallback = function(message) {
 };
 
 // Scan as landscapeLeft, showing the box guide, with success and error callbacks
-cordova.plugins.ios.simpleScanner("landscapeLeft", true, successCallback, errorCallback);
+cordova.plugins.ios.simpleScanner.scanBarcode("landscapeLeft", true, successCallback, errorCallback);
 ```
 
 # Supported Formats
