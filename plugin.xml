@@ -3,9 +3,9 @@
         id="cordova-plugin-ios-simple-scanner" version="1.0.0">
     <name>iOS Simple Barcode Scanner</name>
     <author>David Briglio</author>
-    <description>Simple barcode scanner for iOS (PDF417 Supported).</description>
+    <description>Simple barcode scanner for iOS (PDF417 and QR Codes Supported).</description>
     <license>MIT</license>
-    <keywords>cordova,simple,scanner,ios,pdf417</keywords>
+    <keywords>cordova,simple,scanner,ios,pdf417,qr</keywords>
     <js-module src="www/scanner.js" name="scanner">
         <clobbers target="cordova.plugins.ios.simpleScanner" />
     </js-module>
