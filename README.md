@@ -1,13 +1,17 @@
-[![npm version](https://badge.fury.io/js/cordova-plugin-ios-simple-scanner.svg)](https://badge.fury.io/js/cordova-plugin-ios-simple-scanner)
-# cordova-plugin-ios-simple-scanner
-Simple iOS Barcode Scanner for Cordova. 
- - **PDF417 & QR Codes Supported!**
- - Flash toggle button
- - Cancel scan button
- - Optional onscreen guide box (with 'Scanning...' text)
+# cordova-plugin-ios-simple-scanner [![npm version](https://badge.fury.io/js/cordova-plugin-ios-simple-scanner.svg)](https://badge.fury.io/js/cordova-plugin-ios-simple-scanner)
 
-# How To Use
+Simple iOS Barcode Scanner for Cordova.
+
+- **PDF417 Supported!**
+- **QR Supported!**
+- Flash toggle button
+- Cancel scan button
+- Optional onscreen guide box (with 'Scanning...' text)
+
+## How To Use
+
 Install the plugin using:
+
 ```terminal
 cordova plugin add cordova-plugin-ios-simple-scanner
 
@@ -26,6 +30,7 @@ Call the `scanBarcode` method with the following parameters:
 |error callback|Function|Method to handle all errors / cancelling the scanner. A status message will be passed in.|
 
 Example:
+
 ```javascript
 var successCallback = function(value) {
     console.log("Format Found: " + value.format + ", Data: " + value.data);
@@ -39,16 +44,21 @@ var errorCallback = function(message) {
 cordova.plugins.ios.simpleScanner.scanBarcode("landscapeLeft", true, successCallback, errorCallback);
 ```
 
-# Supported Formats
-Currently the only supported format is **PDF417** and **QR Codes**, but more formats will be supported soon.
+## Supported Formats
 
-# Known Issues
+- PDF417
+- QR Codes
+
+## Known Issues
+
 If the scan method is called while the scanner is already running, the scanner will freeze. If you are planning on opening another instance of the scanner, make sure the current one is not scanning.
 
 Since this plugin creates a view to show the user, there will be a warning about time taken to run the plugin that will suggest running in a background thread.
 
-# Images
+## Images
+
 All icon images were taken and modified from [ionicons](http://ionicons.com/) (100% Free and Open Source - MIT).
 
-# License
+## License
+
 MIT License, please look at the LICENSE file.
