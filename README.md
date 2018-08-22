@@ -1,7 +1,7 @@
 [![npm version](https://badge.fury.io/js/cordova-plugin-ios-simple-scanner.svg)](https://badge.fury.io/js/cordova-plugin-ios-simple-scanner)
 # cordova-plugin-ios-simple-scanner
 Simple iOS Barcode Scanner for Cordova. 
- - **PDF417 Supported!**
+ - **PDF417 & QR Codes Supported!**
  - Flash toggle button
  - Cancel scan button
  - Optional onscreen guide box (with 'Scanning...' text)
@@ -40,7 +40,7 @@ cordova.plugins.ios.simpleScanner.scanBarcode("landscapeLeft", true, successCall
 ```
 
 # Supported Formats
-Currently the only supported format is **PDF417**, but more formats will be supported soon.
+Currently the only supported format is **PDF417** and **QR Codes**, but more formats will be supported soon.
 
 # Known Issues
 If the scan method is called while the scanner is already running, the scanner will freeze. If you are planning on opening another instance of the scanner, make sure the current one is not scanning.

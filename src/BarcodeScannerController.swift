@@ -91,7 +91,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
 
             // Set delegate and use the default dispatch queue to execute the call back
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypePDF417Code]
+            captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeQRCode]
 
             // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -261,7 +261,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
         // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
 
-        if metadataObj.type == AVMetadataObjectTypePDF417Code {
+        if metadataObj.type == AVMetadataObjectTypePDF417Code || metadata.Obj.type == AVMetadataObjectTypeQRCode {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
