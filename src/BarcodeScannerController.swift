@@ -261,7 +261,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
         // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
 
-        if metadataObj.type == AVMetadataObjectTypePDF417Code || metadata.Obj.type == AVMetadataObjectTypeQRCode {
+        if metadataObj.type == AVMetadataObjectTypePDF417Code || metadataObj.type == AVMetadataObjectTypeQRCode {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
