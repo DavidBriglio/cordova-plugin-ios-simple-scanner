@@ -47,7 +47,7 @@ cordova.plugins.ios.simpleScanner.scanBarcode("landscapeLeft", true, successCall
 ## Supported Formats
 
 - PDF417
-- QR Codes
+- QR
 
 ## Known Issues
 
