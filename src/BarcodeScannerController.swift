@@ -71,9 +71,10 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
     }
     
     override func viewDidLoad(){
-        
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video as the media type parameter.
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+            return
+        }
 
         do {
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
@@ -91,10 +92,10 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
 
             // Set delegate and use the default dispatch queue to execute the call back
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeQRCode]
+            captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.pdf417, AVMetadataObject.ObjectType.qr]
 
             // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
-            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             switch(pluginOrientation) {
                 case "landscapeRight":
                     videoPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.landscapeRight
@@ -108,7 +109,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 default:
                     videoPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
             }
-            videoPreviewLayer?.videoGravity = AVLayerVideoGravityResize
+            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resize
             videoPreviewLayer?.frame = view.layer.bounds
             view.layer.addSublayer(videoPreviewLayer!)
             
@@ -118,7 +119,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
                 qrCodeFrameView.layer.borderWidth = 2
                 view.addSubview(qrCodeFrameView)
-                view.bringSubview(toFront: qrCodeFrameView)
+                view.bringSubviewToFront(qrCodeFrameView)
             }
                 
             if(showGuide == "true") {
@@ -131,7 +132,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineMidLeft = lineMidLeft {
                     lineMidLeft.backgroundColor = .white
                     view.addSubview(lineMidLeft)
-                    view.bringSubview(toFront: lineMidLeft)
+                    view.bringSubviewToFront(lineMidLeft)
                 }
                 
                 lineMidRight = UILabel(frame: CGRect(
@@ -143,7 +144,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineMidRight = lineMidRight {
                     lineMidRight.backgroundColor = .white
                     view.addSubview(lineMidRight)
-                    view.bringSubview(toFront: lineMidRight)
+                    view.bringSubviewToFront(lineMidRight)
                 }
                 
                 lineBottomLeft = UILabel(frame: CGRect(
@@ -155,7 +156,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineBottomLeft = lineBottomLeft {
                     lineBottomLeft.backgroundColor = .white
                     view.addSubview(lineBottomLeft)
-                    view.bringSubview(toFront: lineBottomLeft)
+                    view.bringSubviewToFront(lineBottomLeft)
                 }
                 
                 lineTopLeft = UILabel(frame: CGRect(
@@ -167,7 +168,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineTopLeft = lineTopLeft {
                     lineTopLeft.backgroundColor = .white
                     view.addSubview(lineTopLeft)
-                    view.bringSubview(toFront: lineTopLeft)
+                    view.bringSubviewToFront(lineTopLeft)
                 }
                 
                 lineBottomRight = UILabel(frame: CGRect(
@@ -179,7 +180,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineBottomRight = lineBottomRight {
                     lineBottomRight.backgroundColor = .white
                     view.addSubview(lineBottomRight)
-                    view.bringSubview(toFront: lineBottomRight)
+                    view.bringSubviewToFront(lineBottomRight)
                 }
 
                 lineTopRight = UILabel(frame: CGRect(
@@ -191,7 +192,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineTopRight = lineTopRight {
                     lineTopRight.backgroundColor = .white
                     view.addSubview(lineTopRight)
-                    view.bringSubview(toFront: lineTopRight)
+                    view.bringSubviewToFront(lineTopRight)
                 }
             
                 messageLabel = UILabel(frame: CGRect(x:0, y:0, width:view.bounds.size.width, height:40))
@@ -199,7 +200,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 messageLabel.text = "Scanning..."
                 messageLabel.textColor = .white
                 view.addSubview(messageLabel)
-                view.bringSubview(toFront: messageLabel)
+                view.bringSubviewToFront(messageLabel)
             }
             
             cancelButton = UIButton(frame: CGRect(x:view.bounds.size.width - 51, y:5, width:48, height:48))
@@ -207,7 +208,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 cancelButton.setImage(UIImage(named: "ios7-close-empty-white.png"), for: .normal)
                 cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
                 view.addSubview(cancelButton)
-                view.bringSubview(toFront: cancelButton)
+                view.bringSubviewToFront(cancelButton)
             }
 
             flashButton = UIButton(frame: CGRect(x:view.bounds.size.width - 51, y:view.bounds.size.height - 51, width:48, height:48))
@@ -215,7 +216,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 flashButton.setImage(UIImage(named: "ios7-bolt-outline-white.png"), for: .normal)
                 flashButton.addTarget(self, action: #selector(toggleFlash), for: .touchUpInside)
                 view.addSubview(flashButton)
-                view.bringSubview(toFront: flashButton)
+                view.bringSubviewToFront(flashButton)
             }
 
             // Start video capture.
@@ -226,18 +227,18 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
         }
     }
     
-    func cancelButtonAction(sender: UIButton!) {
+    @objc func cancelButtonAction(sender: UIButton!) {
         // Prepare a failed result for cordova
         parentPlugin?.commandDelegate!.send(CDVPluginResult(status:CDVCommandStatus_ERROR, messageAs: "Barcode scan cancelled."), callbackId: callbackId);
         cleanupScreen()
     }
     
-    func toggleFlash() {
-        if let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo), device.hasTorch {
+    @objc func toggleFlash() {
+        if let device = AVCaptureDevice.default(for: AVMediaType.video), device.hasTorch {
             do {
                 try device.lockForConfiguration()
                 let torchOn = !device.isTorchActive
-                try device.setTorchModeOnWithLevel(1.0)
+                try device.setTorchModeOn(level: 1.0)
                 device.torchMode = (torchOn) ? .on : .off
                 device.unlockForConfiguration()
             } catch {
@@ -251,17 +252,17 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
         }
     }
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection) {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // Check if the metadataObjects array is not nil and it contains at least one object.
-        if metadataObjects == nil || metadataObjects.count == 0 {
-            qrCodeFrameView?.frame = CGRect.zero
+        if metadataObjects.count == 0 {
+            qrCodeFrameView?.frame = CGRect.zero	
             return
         }
 
         // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
 
-        if metadataObj.type == AVMetadataObjectTypePDF417Code || metadataObj.type == AVMetadataObjectTypeQRCode {
+        if metadataObj.type == AVMetadataObject.ObjectType.pdf417 || metadataObj.type == AVMetadataObject.ObjectType.qr {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
@@ -280,7 +281,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
     
     func cleanupScreen() {
         
-        if let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo), device.hasTorch {
+        if let device = AVCaptureDevice.default(for: AVMediaType.video), device.hasTorch {
             do {
                 try device.lockForConfiguration()
                 device.torchMode = .off

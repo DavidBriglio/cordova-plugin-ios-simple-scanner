@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.0 - 23/04/2019
+
+- Updated code to swift 4.2
+- Added promise logic
+
 ## v1.1.1 - 22/08/2018
 
 - Fixed typo [dpeacock]
