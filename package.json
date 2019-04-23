@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-ios-simple-scanner",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Cordova simple barcode scanner for iOS (PDF417 Supported).",
   "cordova": {
     "id": "cordova-plugin-ios-simple-scanner",

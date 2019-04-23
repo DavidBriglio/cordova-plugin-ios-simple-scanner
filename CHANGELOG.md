@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.1 - 23/04/2019
+
+- Added gitignore
+- Updated readme
+
 ## v1.2.0 - 23/04/2019
 
 - Updated code to swift 4.2
