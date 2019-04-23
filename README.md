@@ -32,16 +32,25 @@ Call the `scanBarcode` method with the following parameters:
 Example:
 
 ```javascript
-var successCallback = function(value) {
-    console.log("Format Found: " + value.format + ", Data: " + value.data);
+var successCallback = function(result) {
+    console.log("Format Found: " + result.format + ", Data: " + result.data);
 };
 
-var errorCallback = function(message) {
-    console.log("Error Reading Barcode: " + message);
+var errorCallback = function(error) {
+    console.log("Error Reading Barcode: " + error);
 };
 
 // Scan as landscapeLeft, showing the box guide, with success and error callbacks
 cordova.plugins.ios.simpleScanner.scanBarcode("landscapeLeft", true, successCallback, errorCallback);
+
+// Or you can use promise logic:
+cordova.plugins.ios.simpleScanner.scanBarcode("landscapeRight", true)
+    .then(result => {
+        console.log("Format Found: " + result.format + ", Data: " + result.data);
+    })
+    .catch(error => {
+        console.log("Error Reading Barcode: " + error);
+    });
 ```
 
 ## Supported Formats
