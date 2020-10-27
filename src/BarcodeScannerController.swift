@@ -119,7 +119,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
                 qrCodeFrameView.layer.borderWidth = 2
                 view.addSubview(qrCodeFrameView)
-                view.bringSubviewToFront(qrCodeFrameView)
+                view.bringSubview(toFront:qrCodeFrameView)
             }
                 
             if(showGuide == "true") {
@@ -132,7 +132,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineMidLeft = lineMidLeft {
                     lineMidLeft.backgroundColor = .white
                     view.addSubview(lineMidLeft)
-                    view.bringSubviewToFront(lineMidLeft)
+                    view.bringSubview(toFront:lineMidLeft)
                 }
                 
                 lineMidRight = UILabel(frame: CGRect(
@@ -144,7 +144,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineMidRight = lineMidRight {
                     lineMidRight.backgroundColor = .white
                     view.addSubview(lineMidRight)
-                    view.bringSubviewToFront(lineMidRight)
+                    view.bringSubview(toFront:lineMidRight)
                 }
                 
                 lineBottomLeft = UILabel(frame: CGRect(
@@ -156,7 +156,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineBottomLeft = lineBottomLeft {
                     lineBottomLeft.backgroundColor = .white
                     view.addSubview(lineBottomLeft)
-                    view.bringSubviewToFront(lineBottomLeft)
+                    view.bringSubview(toFront:lineBottomLeft)
                 }
                 
                 lineTopLeft = UILabel(frame: CGRect(
@@ -168,7 +168,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineTopLeft = lineTopLeft {
                     lineTopLeft.backgroundColor = .white
                     view.addSubview(lineTopLeft)
-                    view.bringSubviewToFront(lineTopLeft)
+                    view.bringSubview(toFront:lineTopLeft)
                 }
                 
                 lineBottomRight = UILabel(frame: CGRect(
@@ -180,7 +180,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineBottomRight = lineBottomRight {
                     lineBottomRight.backgroundColor = .white
                     view.addSubview(lineBottomRight)
-                    view.bringSubviewToFront(lineBottomRight)
+                    view.bringSubview(toFront:lineBottomRight)
                 }
 
                 lineTopRight = UILabel(frame: CGRect(
@@ -192,7 +192,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 if let lineTopRight = lineTopRight {
                     lineTopRight.backgroundColor = .white
                     view.addSubview(lineTopRight)
-                    view.bringSubviewToFront(lineTopRight)
+                    view.bringSubview(toFront:lineTopRight)
                 }
             
                 messageLabel = UILabel(frame: CGRect(x:0, y:0, width:view.bounds.size.width, height:40))
@@ -200,7 +200,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 messageLabel.text = "Scanning..."
                 messageLabel.textColor = .white
                 view.addSubview(messageLabel)
-                view.bringSubviewToFront(messageLabel)
+                view.bringSubview(toFront:messageLabel)
             }
             
             cancelButton = UIButton(frame: CGRect(x:view.bounds.size.width - 51, y:5, width:48, height:48))
@@ -208,7 +208,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 cancelButton.setImage(UIImage(named: "ios7-close-empty-white.png"), for: .normal)
                 cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
                 view.addSubview(cancelButton)
-                view.bringSubviewToFront(cancelButton)
+                view.bringSubview(toFront:cancelButton)
             }
 
             flashButton = UIButton(frame: CGRect(x:view.bounds.size.width - 51, y:view.bounds.size.height - 51, width:48, height:48))
@@ -216,7 +216,7 @@ class BarcodeScannerController : UIViewController, AVCaptureMetadataOutputObject
                 flashButton.setImage(UIImage(named: "ios7-bolt-outline-white.png"), for: .normal)
                 flashButton.addTarget(self, action: #selector(toggleFlash), for: .touchUpInside)
                 view.addSubview(flashButton)
-                view.bringSubviewToFront(flashButton)
+                view.bringSubview(toFront:flashButton)
             }
 
             // Start video capture.

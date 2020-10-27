@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.2 - 27/10/2020
+
+- Fixed remaining swift 3 code
+
 ## v1.2.1 - 23/04/2019
 
 - Added gitignore
